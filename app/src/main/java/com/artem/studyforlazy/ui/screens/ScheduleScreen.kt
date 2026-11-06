@@ -17,10 +17,10 @@ import com.artem.studyforlazy.ui.StudyForLazyTheme
 import com.artem.studyforlazy.ui.components.LessonCard
 
 private val mockLessons = listOf(
-    Lesson("1", "Математический анализ", "09:00 – 10:30", "А-312", "Лекция"),
-    Lesson("2", "Физика", "10:45 – 12:15", "Б-104", "Практика"),
-    Lesson("3", "Программирование", "13:00 – 14:30", "К-201", "Лаборатория"),
-    Lesson("4", "История", "14:45 – 16:15", "Г-18", "Семинар"),
+    Lesson("1", "Математический анализ", "Лекция", "А-312", "09:00", "10:30", 5, false, "voenmeh_main"),
+    Lesson("2", "Физика", "Практика", "Б-104", "10:45", "12:15", 5, false, "voenmeh_main"),
+    Lesson("3", "Программирование", "Лаборатория", "К-201", "13:00", "14:30", 5, false, "voenmeh_main"),
+    Lesson("4", "История", "Семинар", "Г-18", "14:45", "16:15", 5, false, "voenmeh_main"),
 )
 
 @Composable

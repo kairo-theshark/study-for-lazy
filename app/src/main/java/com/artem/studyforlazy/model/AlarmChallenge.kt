@@ -5,4 +5,5 @@ enum class AlarmChallengeType { MATH, QR_CODE, PHOTO }
 data class AlarmConfig(
     val isEnabled: Boolean,
     val challengeType: AlarmChallengeType,
+    val minBufferMinutesBeforeFirstClass: Int = 60,
 )

@@ -29,7 +29,7 @@ fun LessonCard(lesson: Lesson, modifier: Modifier = Modifier) {
                 overflow = TextOverflow.Ellipsis,
             )
             Row(horizontalArrangement = Arrangement.spacedBy(12.dp)) {
-                Text(lesson.time, style = MaterialTheme.typography.bodyMedium)
+                Text("${lesson.startTime} – ${lesson.endTime}", style = MaterialTheme.typography.bodyMedium)
                 Text(
                     text = lesson.room,
                     style = MaterialTheme.typography.bodyMedium,

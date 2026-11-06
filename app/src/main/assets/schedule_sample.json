@@ -1,0 +1,29 @@
+{
+  "campuses": [
+    {
+      "id": "voenmeh_main",
+      "name": "Главный корпус (1-я Красноармейская)",
+      "latitude": 59.9161,
+      "longitude": 30.3168,
+      "radiusMeters": 200
+    }
+  ],
+  "weeks": {
+    "odd": [
+      {
+        "dayOfWeek": 1,
+        "classes": [
+          {
+            "title": "Инженерная графика",
+            "type": "LECTURE",
+            "startTime": "09:00",
+            "endTime": "10:30",
+            "room": "312",
+            "campusId": "voenmeh_main"
+          }
+        ]
+      }
+    ],
+    "even": []
+  }
+}
