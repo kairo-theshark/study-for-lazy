@@ -26,7 +26,7 @@ fun StatsScreen(modifier: Modifier = Modifier) {
             .padding(16.dp),
         verticalArrangement = Arrangement.spacedBy(12.dp),
     ) {
-        Text("Статистика проёбов", style = MaterialTheme.typography.headlineSmall)
+        Text("Статистика прогулов", style = MaterialTheme.typography.headlineSmall)
         StatCard(label = "Посещено пар", value = stats.attendedClasses.toString())
         StatCard(label = "Пропущено пар", value = stats.skippedClasses.toString())
         StatCard(label = "Явка", value = "${stats.attendancePercent}%")
