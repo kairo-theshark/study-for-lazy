@@ -13,6 +13,9 @@ interface ScheduleDao {
     @Query("SELECT * FROM lessons WHERE dayOfWeek = :dayOfWeek AND isOddWeek = :isOddWeek ORDER BY startTime")
     fun observeLessons(dayOfWeek: Int, isOddWeek: Boolean): Flow<List<LessonEntity>>
 
+    @Query("SELECT * FROM lessons WHERE dayOfWeek = :dayOfWeek AND isOddWeek = :isOddWeek ORDER BY startTime")
+    suspend fun getLessonsOnce(dayOfWeek: Int, isOddWeek: Boolean): List<LessonEntity>
+
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     suspend fun insertAll(lessons: List<LessonEntity>)
 }

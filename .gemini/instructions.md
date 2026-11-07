@@ -1,0 +1,1 @@
+/home/kairo/opencodePr/StudyForLazy/AGENTS.md
