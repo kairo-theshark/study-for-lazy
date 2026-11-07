@@ -13,10 +13,11 @@ import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.currentBackStackEntryAsState
 import androidx.navigation.compose.rememberNavController
-import com.artem.studyforlazy.ui.StudyForLazyTheme
+import com.artem.studyforlazy.ui.theme.StudyForLazyTheme
 import com.artem.studyforlazy.ui.navigation.BottomBar
 import com.artem.studyforlazy.ui.navigation.Screen
 import com.artem.studyforlazy.ui.screens.AlarmScreen
+import com.artem.studyforlazy.ui.screens.DeadlinesScreen
 import com.artem.studyforlazy.ui.screens.ScheduleScreen
 import com.artem.studyforlazy.ui.screens.StatsScreen
 
@@ -50,6 +51,7 @@ fun StudyForLazyApp() {
             composable(Screen.Schedule.route) { ScheduleScreen() }
             composable(Screen.Alarm.route) { AlarmScreen() }
             composable(Screen.Stats.route) { StatsScreen() }
+            composable(Screen.Deadlines.route) { DeadlinesScreen() }
         }
     }
 }

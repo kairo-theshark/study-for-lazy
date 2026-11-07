@@ -14,7 +14,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.artem.studyforlazy.model.AttendanceStats
-import com.artem.studyforlazy.ui.StudyForLazyTheme
+import com.artem.studyforlazy.ui.theme.StudyForLazyTheme
 
 @Composable
 fun StatsScreen(modifier: Modifier = Modifier) {

@@ -2,6 +2,7 @@ package com.artem.studyforlazy.ui.screens
 
 import android.content.res.Configuration
 import androidx.compose.foundation.layout.Arrangement
+import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.lazy.LazyColumn
@@ -9,12 +10,17 @@ import androidx.compose.foundation.lazy.items
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
+import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.artem.studyforlazy.model.Lesson
-import com.artem.studyforlazy.ui.StudyForLazyTheme
 import com.artem.studyforlazy.ui.components.LessonCard
+import com.artem.studyforlazy.ui.components.WeekStrip
+import com.artem.studyforlazy.ui.theme.StudyForLazyTheme
 
 private val mockLessons = listOf(
     Lesson("1", "Математический анализ", "Лекция", "А-312", "09:00", "10:30", 5, false, "voenmeh_main"),
@@ -25,16 +31,22 @@ private val mockLessons = listOf(
 
 @Composable
 fun ScheduleScreen(modifier: Modifier = Modifier) {
-    LazyColumn(
-        modifier = modifier.fillMaxSize(),
-        contentPadding = PaddingValues(16.dp),
-        verticalArrangement = Arrangement.spacedBy(12.dp),
-    ) {
-        item {
-            Text("Сегодня", style = MaterialTheme.typography.headlineSmall)
-        }
-        items(mockLessons, key = { it.id }) { lesson ->
-            LessonCard(lesson)
+    var selectedDay by remember { mutableStateOf(4) }
+
+    Column(modifier.fillMaxSize()) {
+        WeekStrip(selectedIndex = selectedDay, onSelect = { selectedDay = it })
+
+        LazyColumn(
+            modifier = Modifier.fillMaxSize(),
+            contentPadding = PaddingValues(horizontal = 16.dp, vertical = 8.dp),
+            verticalArrangement = Arrangement.spacedBy(12.dp),
+        ) {
+            item {
+                Text("Сегодня", style = MaterialTheme.typography.headlineSmall)
+            }
+            items(mockLessons, key = { it.id }) { lesson ->
+                LessonCard(lesson)
+            }
         }
     }
 }

@@ -22,7 +22,7 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.artem.studyforlazy.model.AlarmChallengeType
 import com.artem.studyforlazy.model.AlarmConfig
-import com.artem.studyforlazy.ui.StudyForLazyTheme
+import com.artem.studyforlazy.ui.theme.StudyForLazyTheme
 import com.artem.studyforlazy.ui.components.ChallengeSelector
 
 @Composable
