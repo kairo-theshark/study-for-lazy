@@ -10,31 +10,40 @@ import androidx.compose.foundation.lazy.items
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
-import androidx.compose.runtime.mutableStateOf
-import androidx.compose.runtime.remember
-import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import androidx.lifecycle.viewmodel.compose.viewModel
 import com.artem.studyforlazy.model.Lesson
 import com.artem.studyforlazy.ui.components.LessonCard
 import com.artem.studyforlazy.ui.components.WeekStrip
 import com.artem.studyforlazy.ui.theme.StudyForLazyTheme
 
-private val mockLessons = listOf(
-    Lesson("1", "Математический анализ", "Лекция", "А-312", "09:00", "10:30", 5, false, "voenmeh_main"),
-    Lesson("2", "Физика", "Практика", "Б-104", "10:45", "12:15", 5, false, "voenmeh_main"),
-    Lesson("3", "Программирование", "Лаборатория", "К-201", "13:00", "14:30", 5, false, "voenmeh_main"),
-    Lesson("4", "История", "Семинар", "Г-18", "14:45", "16:15", 5, false, "voenmeh_main"),
-)
+@Composable
+fun ScheduleScreen(
+    modifier: Modifier = Modifier,
+    viewModel: ScheduleViewModel = viewModel(),
+) {
+    val lessons by viewModel.lessons.collectAsState()
+    ScheduleContent(
+        lessons = lessons,
+        selectedDay = viewModel.selectedDayOfWeek,
+        onSelectDay = viewModel::selectDay,
+        modifier = modifier,
+    )
+}
 
 @Composable
-fun ScheduleScreen(modifier: Modifier = Modifier) {
-    var selectedDay by remember { mutableStateOf(4) }
-
+private fun ScheduleContent(
+    lessons: List<Lesson>,
+    selectedDay: Int,
+    onSelectDay: (Int) -> Unit,
+    modifier: Modifier = Modifier,
+) {
     Column(modifier.fillMaxSize()) {
-        WeekStrip(selectedIndex = selectedDay, onSelect = { selectedDay = it })
+        WeekStrip(selectedIndex = selectedDay - 1, onSelect = { onSelectDay(it + 1) })
 
         LazyColumn(
             modifier = Modifier.fillMaxSize(),
@@ -44,17 +53,31 @@ fun ScheduleScreen(modifier: Modifier = Modifier) {
             item {
                 Text("Сегодня", style = MaterialTheme.typography.headlineSmall)
             }
-            items(mockLessons, key = { it.id }) { lesson ->
+            if (lessons.isEmpty()) {
+                item {
+                    Text(
+                        text = "Пар нет — отдыхай",
+                        style = MaterialTheme.typography.bodyMedium,
+                        color = MaterialTheme.colorScheme.onSurfaceVariant,
+                    )
+                }
+            }
+            items(lessons, key = { it.id }) { lesson ->
                 LessonCard(lesson)
             }
         }
     }
 }
 
+private val previewLessons = listOf(
+    Lesson("1", "Математический анализ", "Лекция", "А-312", "09:00", "10:30", 5, false, "voenmeh_main"),
+    Lesson("2", "Физика", "Практика", "Б-104", "10:45", "12:15", 5, false, "voenmeh_main"),
+)
+
 @Preview(showBackground = true, uiMode = Configuration.UI_MODE_NIGHT_YES)
 @Composable
 private fun ScheduleScreenPreview() {
     StudyForLazyTheme {
-        ScheduleScreen()
+        ScheduleContent(previewLessons, selectedDay = 5, onSelectDay = {})
     }
 }
